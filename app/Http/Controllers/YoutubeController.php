@@ -34,10 +34,14 @@ class YoutubeController extends Controller
         $DEVELOPER_KEY = 'AIzaSyCEHlV9bz5CT1KrlIOw4bbTg_DIuit6D0c';
         return "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" . $term . "&maxResults=" . $maxResults . "&key=" . $DEVELOPER_KEY;
     }
-
-    public function search($term, $maxResults) {
+    
+    // public function search($term, $maxResults) {
+    public function search(Request $request) {
+        if (!empty($request->terms)) $terms = $request->terms;
+        if (!empty($request->maxResults)) $maxResults = $request->maxResults;
         // return $this->url_get_contents($this->generate_url($term, $maxResults));
-        return Redirect::route(Results($this->url_get_contents($this->generate_url($term, $maxResults))));
+        // return Redirect::route(Results($this->url_get_contents($this->generate_url($term, $maxResults))));
+        return view('pages/results', compact($this->url_get_contents($this->generate_url($terms, $maxResults))));
     } 
  
 }

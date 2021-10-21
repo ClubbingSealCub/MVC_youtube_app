@@ -23,6 +23,7 @@ Route::get('/youtube', function () {
     return view('youtube');
 });
 
-Route::get('search', ['uses' => 'YoutubeController@search'])->name('search');
+//Route::get('/results',);
+Route::get('search', [YoutubeController::class, 'search'])->name('search');
 
 ?>
