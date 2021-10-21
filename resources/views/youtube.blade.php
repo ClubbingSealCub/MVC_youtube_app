@@ -1,34 +1,4 @@
 <?php
-
-/**
- * Library Requirements
- *
- * 1. Install composer (https://getcomposer.org)
- * 2. On the command line, change to this directory (api-samples/php)
- * 3. Require the google/apiclient library
- *    $ composer require google/apiclient:~2.0
-  */
-// if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-//   throw new \Exception('please run "composer require google/apiclient:~2.0" in "' . __DIR__ .'"');
-// }
-
-// require_once __DIR__ . '/vendor/autoload.php';
-
-
-
-$htmlBody = <<<END
-<form method="GET">
-  <div>
-    Search Term: <input type="search" id="q" name="q" placeholder="Enter Search Term">
-  </div>
-  <div>
-    Max Results: <input type="number" id="maxResults" name="maxResults" min="1" max="50" step="1" value="25">
-  </div>
-  <input type="submit" value="Search">
-</form>
-<div id="target"></div>
-END;
-
 function url_get_contents($url){
   $crl = curl_init();
   $timeout = 10;
@@ -48,7 +18,7 @@ if ($ret === false || $info['http_code'] != 200) {
     $ret .= "<br>\n Error: ". curl_error($crl) . "Code: " . curl_errno($crl);
 }
   curl_close($crl);
-  return $ret;
+  echo $ret;
 }
 
 // This code will execute if the user entered a search query in the form
@@ -63,16 +33,39 @@ if (isset($_GET['q']) && isset($_GET['maxResults'])) {
   $term = $_GET['q'];
   $url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" . $term . "&key=" . $DEVELOPER_KEY; 
   $searchResponse = url_get_contents($url);
-
 }
 ?>
 
 <!doctype html>
 <html>
   <head>
+    <script>
+      function showResults(str) {
+        if {
+          str.length == 0 document.getElementById("target").innerHTML = "";
+          return;
+        } else {
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("target").innerHTML = this.responseText;
+            }
+          };
+        }
+      };
+    </script>
     <title>YouTube Search</title>
   </head>
   <body>
-    <?=$htmlBody?>
+    <form method="GET">
+      <div>
+        Search Term: <input type="search" id="q" name="q" placeholder="Enter Search Term">
+      </div>
+      <div>
+        Max Results: <input type="number" id="maxResults" name="maxResults" min="1" max="50" step="1" value="25">
+      </div>
+      <input type="submit" value="Search">
+      </form>
+    <div id="target"></div>
   </body>
 </html>
