@@ -16,16 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-//Route::get('/youtube',array('uses' => 'YoutubeController@index', 'as' => 'youtube'));
-Route::get('/youtube', function () {
     return view('youtube');
 });
 
-//Route::get('/results',);
-// Route::get('/search', [YoutubeController::class, 'search']);
 Route::get('/search', 'YoutubeController@search');
-
 ?>
