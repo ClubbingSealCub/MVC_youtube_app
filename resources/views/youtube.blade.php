@@ -1,16 +1,13 @@
-<?php
-?>
-
 <!doctype html>
 <html>
   <head>
     <script>
-      function search() {//(term, maxResults) {
+      function search() {
         event.preventDefault();
         var term = document.getElementById('term').value;
         var maxResults = document.getElementById('maxResults').value;
         if (term.length == 0) {
-           document.getElementById('searchResult').innerHTML = '';
+          document.getElementById('searchResult').innerHTML = '';
           return;
         } else {
           var xmlhttp = new XMLHttpRequest();
@@ -22,7 +19,6 @@
           var attributes = '&term=' + term + '&maxResults=' + maxResults;
           console.log('search?' + attributes);
           xmlhttp.open('GET', 'http://localhost/search?' + attributes, true);
-          // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xmlhttp.send();
         }
       };

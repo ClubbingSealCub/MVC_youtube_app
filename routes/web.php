@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\YoutubeController;
-// use Google\Service\YouTube\Resource\Search;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/search', 'YoutubeController@search');
+
 ?>

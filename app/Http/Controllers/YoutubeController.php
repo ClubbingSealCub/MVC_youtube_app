@@ -44,22 +44,20 @@ class YoutubeController extends Controller
             switch ($item['id']['kind']) {
                 case 'youtube#video':
                     $id = $item['id']['videoId'];
-                    $link = 'https://www.youtube.com/watch?v=' . $id;
+                    $url = 'https://www.youtube.com/watch?v=' . $id;
                 break;
                 case 'youtube#channel':
                     $id = $item['id']['channelId'];
-                    $link = 'https://www.youtube.com/channel/' . $id;
+                    $url = 'https://www.youtube.com/channel/' . $id;
                 break;
                 case 'youtube#playlist':
                     $id = $item['id']['playlistId'];
-                    $link = 'https://www.youtube.com/playlist?list=' . $id;
+                    $url = 'https://www.youtube.com/playlist?list=' . $id;
                 break;
             }
             $title = $item['snippet']['title'];
-            $thumbURL = $item['snippet']['thumbnails']['default']['url'];
-            // $thumbURL = "https://img.youtube.com/vi/" . $id . "/mqdefault.jpg";
-            // printf('<li><img src="%s" width="120" height="90"> <a href="%s">%s</a> (ID: %s) </li>', $thumbURL, $link, $title, $id);
-            $result = new Result([$id, $title, $link, $thumbURL]);
+            $thumbnail = $item['snippet']['thumbnails']['default']['url'];
+            $result = new Result([$id, $title, $url, $thumbnail]);
             $results[] = $result;
         }
         return $results;
@@ -71,7 +69,7 @@ class YoutubeController extends Controller
         $url = $this->generate_url($term, $maxResults);
         $list = $this->url_get_contents($url);
         $results = $this->resultList($list);
-        return view('results')->with('list', $results);
+        return view('results')->with('results', $results);
     } 
  
 }

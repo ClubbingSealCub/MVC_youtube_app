@@ -5,7 +5,7 @@
     <body>
         <ul style="list-style-type:none;">
             <?php
-            foreach($list as $result) {
+            foreach($results as $result) {
                 print_r($result->generateHTML());
             }
             ?>

@@ -2,20 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 class Result
 {
-    use HasFactory;
-
-    // protected $fillable = [
-    //     'id',
-    //     'title',
-    //     'url',
-    //     'thumbnail',
-    // ];
-
-
     protected $id = '';
     protected $title = '';
     protected $url = '';
