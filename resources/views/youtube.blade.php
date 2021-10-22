@@ -7,21 +7,21 @@
     <script>
       function search() {//(term, maxResults) {
         event.preventDefault();
-        var term = document.getElementById("term").value;
-        var maxResults = document.getElementById("maxResults").value;
+        var term = document.getElementById('term').value;
+        var maxResults = document.getElementById('maxResults').value;
         if (term.length == 0) {
-           document.getElementById("searchResult").innerHTML = "";
+           document.getElementById('searchResult').innerHTML = '';
           return;
         } else {
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("searchResult").innerHTML = this.responseText;
+              document.getElementById('searchResult').innerHTML = this.responseText;
             }
           };
-          var attributes = "&term=" + term + "&maxResults=" + maxResults;
-          console.log("search?" + attributes);
-          xmlhttp.open("GET", "http://localhost/search?" + attributes, true);
+          var attributes = '&term=' + term + '&maxResults=' + maxResults;
+          console.log('search?' + attributes);
+          xmlhttp.open('GET', 'http://localhost/search?' + attributes, true);
           // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xmlhttp.send();
         }
